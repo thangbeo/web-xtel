@@ -402,8 +402,7 @@
               <v-col cols="1" class="pb-0"></v-col>
               <v-col cols="10" class="pb-0">
                 <v-row>
-                  <v-col cols="2"> </v-col>
-                  <v-col cols="8" align="center">
+                  <v-col align="center">
                     <v-btn
                       @click="clickevents(1)"
                       rounded
@@ -477,14 +476,13 @@
                       >X-Tube</v-btn
                     >
                   </v-col>
-                  <v-col cols="2"> </v-col>
                 </v-row>
               </v-col>
               <v-col cols="1" class="pb-0"></v-col>
             </v-row>
             <v-row>
               <v-col cols="1" class="pt-0"></v-col>
-              <v-col cols="10" class="px-0">
+              <v-col cols="10" class="px-0 pt-0">
                 <Shared :items="itemsBanner" :data="all"></Shared>
               </v-col>
               <v-col cols="1" class="pt-0"></v-col>

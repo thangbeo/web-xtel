@@ -16,7 +16,7 @@
             v-for="(item, i) in items.listData"
             :key="`${item.id} + ${i}`"
           >
-            <v-img :src="item.image" max-height="315px">
+            <v-img :src="item.image" width="100%">
               <div class="h-100" style="display: flex; align-items: end; ">
                 <v-card-text>
                   <v-row>
@@ -99,7 +99,7 @@
           v-for="(item, i) in items.totalData.listData"
           :key="`${item.id} + ${i}`"
         >
-          <v-img :src="item.image" max-height="315px">
+          <v-img :src="item.image" width="100%">
             <div class="h-100" style="display: flex; align-items: end; ">
               <v-card-text>
                 <v-row class="">
@@ -153,6 +153,25 @@ export default {
 
   data() {
     return {}
+  },
+  computed: {
+    ...mapState({
+      checkLanguage: state => state.app.checkLanguage
+    }),
+    breakpoint() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 'mobile'
+        case 'sm':
+          return 'mobile'
+        case 'md':
+          return 'desktop'
+        case 'lg':
+          return 'desktop'
+        case 'xl':
+          return 'desktop'
+      }
+    }
   }
 }
 </script>

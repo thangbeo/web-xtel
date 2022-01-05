@@ -15,18 +15,18 @@
             v-for="(item, i) in items"
             :key="`${item.id} + ${i}`"
           >
-            <v-img :src="item.image" max-height="315px">
+            <v-img :src="item.image" width="100%">
               <div class="h-100" style="display: flex; align-items: end; ">
                 <v-card-text>
                   <v-row>
-                    <v-col cols="8" class="pl-1">
+                    <v-col cols="8" xl="9" lg="9" class="pl-1">
                       <div
                         class="fs-20 font-weight-bold white--text text-truncate"
                       >
                         {{ item.title }}
                       </div>
                     </v-col>
-                    <v-col cols="4" class="pl-0">
+                    <v-col cols="4" xl="3" lg="3" class="pl-0">
                       <div>
                         <v-btn small class="success" depressed rounded
                           >Xem thêm

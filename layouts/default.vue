@@ -215,10 +215,10 @@
         <v-col cols="1"></v-col>
         <v-col cols="10" class="fs-16">
           <v-row class="list-unstyled">
-            <v-col cols="3">
+            <v-col cols="2">
               <v-img src="/logo/logoXtel.png" width="80" />
             </v-col>
-            <v-col cols="3">
+            <v-col cols="4">
               <div>
                 <div class="text-uppercase pb-2 white--text fs-14 ">
                   services
@@ -271,7 +271,7 @@
           </v-row>
         </v-col>
         <v-col cols="1"></v-col>
-        <!-- <v-col cols="12">
+        <v-col cols="12">
           <v-row class="info-contact">
             <v-col cols="8"></v-col>
             <v-col cols="4">
@@ -320,12 +320,12 @@
               </v-row>
             </v-col>
           </v-row>
-        </v-col> -->
-        <!-- <v-col cols="12" class="pt-10">
+        </v-col>
+        <v-col cols="12" class="pt-10">
           <div class="success--text text-center fs-14">
             Copyright © 2021 XTEL All Rights Reserved.
           </div>
-        </v-col> -->
+        </v-col>
       </v-row>
     </v-footer>
   </v-app>
