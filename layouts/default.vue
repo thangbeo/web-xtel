@@ -271,7 +271,7 @@
           </v-row>
         </v-col>
         <v-col cols="1"></v-col>
-        <v-col cols="12">
+        <!-- <v-col cols="12">
           <v-row class="info-contact">
             <v-col cols="8"></v-col>
             <v-col cols="4">
@@ -320,12 +320,12 @@
               </v-row>
             </v-col>
           </v-row>
-        </v-col>
-        <v-col cols="12" class="pt-10">
+        </v-col> -->
+        <!-- <v-col cols="12" class="pt-10">
           <div class="success--text text-center fs-14">
             Copyright © 2021 XTEL All Rights Reserved.
           </div>
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-footer>
   </v-app>
@@ -499,6 +499,8 @@ export default {
 }
 .main-footer {
   background-image: url(/banner/footer.png) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   width: 100%;
   .list-unstyled {
     a {
@@ -530,8 +532,8 @@ export default {
   height: 50px !important;
   position: fixed;
   width: 100%;
-  // background-repeat: no-repeat !important;
-  // background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .overlay {
