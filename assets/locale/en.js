@@ -56,5 +56,8 @@ export default {
     RecruitmentProcess: 'Recruitment Process',
     HotJobs: 'Hot Jobs',
     Contact: 'Contact'
-  }
+  },
+  whereWeServices: 'where we services',
+  ourCustomer: 'Our customer',
+  service: 'Service'
 }

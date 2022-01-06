@@ -1,5 +1,7 @@
 <template>
-  <v-app>
+  <v-app
+    :class="breakpoint === 'desktop' ? 'main-default' : 'main-default-mobile'"
+  >
     <div class="background-image"></div>
     <!-- <div class="overlay"></div> -->
     <client-only>
@@ -10,23 +12,25 @@
         :max="5"
       />
     </client-only>
-    <!-- <v-navigation-drawer
+    <v-navigation-drawer
       v-model="drawer"
-      width="300px"
+      width="50%"
       app
       fixed
       right
       light
       style="padding-bottom: 54px"
       class="denser-nav d-sm-none"
+      height="100%"
     >
-      <v-list nav dense expand class="disabled-active">
+      <v-list nav dense flat expand class="disabled-active">
         <template v-for="(item, index) in topmenu">
           <v-list-group
             :key="index"
             :value="true"
             no-action
             v-if="item.children !== undefined && item.children.length > 0"
+            append-icon="mdi-menu-down"
           >
             <template v-slot:activator>
               <v-list-item-content>
@@ -56,16 +60,13 @@
             router
             active-class="primary--text"
           >
-            <v-list-item-icon>
-              <v-icon>{{ item.page_icon }}</v-icon>
-            </v-list-item-icon>
             <v-list-item-title
               v-text="$vuetify.lang.t('$vuetify.menu.' + item.page_name)"
             ></v-list-item-title>
           </v-list-item>
         </template>
       </v-list>
-    </v-navigation-drawer> -->
+    </v-navigation-drawer>
     <v-app-bar
       height="50px"
       app
@@ -107,7 +108,7 @@
           >{{ $vuetify.lang.t('$vuetify.menu.VPeople') }}
         </v-btn>
       </v-hover>
-      <span>
+      <span class="d-none d-sm-block">
         <v-btn x-small @click="openMenuVPeople" icon fab>
           <v-icon class="success--text">{{
             show ? 'mdi-menu-up' : 'mdi-menu-down'
@@ -127,10 +128,10 @@
           >{{ $vuetify.lang.t('$vuetify.menu.WhyChoose') }}</v-btn
         >
       </v-hover>
-      <span>
+      <span class="d-none d-sm-block">
         <v-btn x-small @click="openMenuWhyChoose" icon fab>
           <v-icon class="success--text">{{
-            show ? 'mdi-menu-up' : 'mdi-menu-down'
+            showChoose ? 'mdi-menu-up' : 'mdi-menu-down'
           }}</v-icon>
         </v-btn></span
       >
@@ -211,122 +212,234 @@
     <!-- footer -->
 
     <v-footer class="main-footer">
-      <v-row>
-        <v-col cols="1"></v-col>
-        <v-col cols="10" class="fs-16">
-          <v-row class="list-unstyled">
-            <v-col cols="2">
-              <v-img src="/logo/logoXtel.png" width="80" />
-            </v-col>
-            <v-col cols="4">
-              <div>
-                <div class="text-uppercase pb-2 white--text fs-14 ">
-                  services
-                </div>
-
+      <container>
+        <v-row v-if="breakpoint === 'desktop'">
+          <v-col cols="1"></v-col>
+          <v-col cols="10" class="fs-16">
+            <v-row class="list-unstyled">
+              <v-col cols="2">
+                <v-img src="/logo/logoXtel.png" width="80" />
+              </v-col>
+              <v-col cols="4">
                 <div>
-                  <a href="#">
-                    Offshore development
-                  </a>
-                </div>
+                  <div class="text-uppercase pb-2 white--text fs-14 ">
+                    services
+                  </div>
 
-                <div>
-                  <a href="#"> System/Application development</a>
-                </div>
+                  <div>
+                    <a href="#">
+                      Offshore development
+                    </a>
+                  </div>
 
-                <div>
-                  <a href="#"> Blockchain Consulting and Development</a>
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="3">
-              <div>
-                <div class="text-uppercase pb-2 white--text fs-14">Company</div>
+                  <div>
+                    <a href="#"> System/Application development</a>
+                  </div>
 
-                <div>
-                  <a href="#">
-                    About Us
-                  </a>
+                  <div>
+                    <a href="#"> Blockchain Consulting and Development</a>
+                  </div>
                 </div>
+              </v-col>
+              <v-col cols="3">
+                <div>
+                  <div class="text-uppercase pb-2 white--text fs-14">
+                    Company
+                  </div>
 
-                <div>
-                  <a href="#"> CEO's Greeting</a>
-                </div>
+                  <div>
+                    <a href="#">
+                      About Us
+                    </a>
+                  </div>
 
-                <div>
-                  <a href="#"> Vision - Mission</a>
-                </div>
+                  <div>
+                    <a href="#"> CEO's Greeting</a>
+                  </div>
 
-                <div>
-                  <a href="#">Address</a>
+                  <div>
+                    <a href="#"> Vision - Mission</a>
+                  </div>
+
+                  <div>
+                    <a href="#">Address</a>
+                  </div>
                 </div>
-              </div>
-            </v-col>
-            <v-col cols="3">
-              <div>
-                <div class="text-uppercase pb-2 white--text fs-14">Contact</div>
-                <a href="#">Contact</a>
-              </div>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col cols="1"></v-col>
-        <v-col cols="12">
-          <v-row class="info-contact">
-            <v-col cols="8"></v-col>
-            <v-col cols="4">
-              <v-row>
-                <v-col cols="12" class="py-0">
-                  <div style="color:#8D8C8C">
-                    <div class="d-flex pt-2" style="align-items:center">
-                      <v-icon size="30" style="color:#8D8C8C"
-                        >mdi-home-outline</v-icon
-                      >
-                      <div class="pl-2 fs-14">
-                        Số 15 Ngõ 82, Dịch Vọng Hậu, Hà Nội
+              </v-col>
+              <v-col cols="3">
+                <div>
+                  <div class="text-uppercase pb-2 white--text fs-14">
+                    Contact
+                  </div>
+                  <a href="#">Contact</a>
+                </div>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="1"></v-col>
+          <v-col cols="12">
+            <v-row class="info-contact">
+              <v-col cols="8"></v-col>
+              <v-col cols="4">
+                <v-row>
+                  <v-col cols="12" class="py-0">
+                    <div style="color:#8D8C8C">
+                      <div class="d-flex pt-2" style="align-items:center">
+                        <v-icon size="30" style="color:#8D8C8C"
+                          >mdi-home-outline</v-icon
+                        >
+                        <div class="pl-2 fs-14">
+                          Số 15 Ngõ 82, Dịch Vọng Hậu, Hà Nội
+                        </div>
                       </div>
                     </div>
+                  </v-col>
+                  <v-col cols="4" class="py-0 pr-0">
+                    <div class="d-flex pt-2" style="align-items:center">
+                      <v-icon size="30" style="color:#8D8C8C"
+                        >mdi-phone-outline</v-icon
+                      >
+                      <div class="pl-2 fs-14">
+                        <a href="tel:0325505511"> (+84)35.889.999</a>
+                      </div>
+                    </div>
+                    <div class="d-flex pt-2" style="align-items:center">
+                      <v-icon size="30" style="color:#8D8C8C"
+                        >mdi-email-outline</v-icon
+                      >
+                      <div class="pl-2 fs-14">
+                        <a href="mailto:info@xtel.vn">info@xtel.vn</a>
+                      </div>
+                    </div>
+                  </v-col>
+                  <v-col cols="8" class=" pb-0"
+                    ><iframe
+                      max-width="100%"
+                      width="250px"
+                      max-height="100%"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0785925946757!2d105.78277231429784!3d21.029541093128977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cf55cbf6b%3A0x6ed54091a6cad02c!2zMTUgTmfDtSA4MiBE4buLY2ggVuG7jW5nIEjhuq11LCBE4buLY2ggVuG7jW5nIEjhuq11LCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1640684046531!5m2!1svi!2s"
+                      style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                    ></iframe
+                  ></v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="12" class="pt-10">
+            <div class="success--text text-center fs-14">
+              Copyright © 2021 XTEL All Rights Reserved.
+            </div>
+          </v-col>
+        </v-row>
+        <v-row v-else>
+          <v-col cols="12" class="fs-16 py-0">
+            <v-row class="list-unstyled">
+              <v-col cols="12">
+                <v-img src="/logo/logoXtel.png" width="80" />
+              </v-col>
+              <v-col cols="12">
+                <div>
+                  <div class="text-uppercase pb-2 white--text fs-14 ">
+                    services
                   </div>
-                </v-col>
-                <v-col cols="4" class="py-0 pr-0">
+
+                  <div>
+                    <a href="#">
+                      Offshore development
+                    </a>
+                  </div>
+
+                  <div>
+                    <a href="#"> System/Application development</a>
+                  </div>
+
+                  <div>
+                    <a href="#"> Blockchain Consulting and Development</a>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" class="pt-0">
+                <div>
+                  <div class="text-uppercase pb-2 white--text fs-14">
+                    Company
+                  </div>
+
+                  <div>
+                    <a href="#">
+                      About Us
+                    </a>
+                  </div>
+
+                  <div>
+                    <a href="#"> CEO's Greeting</a>
+                  </div>
+
+                  <div>
+                    <a href="#"> Vision - Mission</a>
+                  </div>
+
+                  <div>
+                    <a href="#">Address</a>
+                  </div>
+                </div>
+              </v-col>
+
+              <v-col cols="12" class="pt-0">
+                <div>
+                  <div class="text-uppercase pb-2 white--text fs-14">
+                    Contact
+                  </div>
+                  <a href="#">Contact</a>
+                </div>
+              </v-col>
+
+              <v-divider></v-divider>
+              <v-col cols="12" class="py-0">
+                <div style="color:#8D8C8C">
                   <div class="d-flex pt-2" style="align-items:center">
                     <v-icon size="30" style="color:#8D8C8C"
-                      >mdi-phone-outline</v-icon
+                      >mdi-home-outline</v-icon
                     >
                     <div class="pl-2 fs-14">
-                      <a href="tel:0325505511"> (+84)35.889.999</a>
+                      Số 15 Ngõ 82, Dịch Vọng Hậu, Hà Nội
                     </div>
                   </div>
-                  <div class="d-flex pt-2" style="align-items:center">
-                    <v-icon size="30" style="color:#8D8C8C"
-                      >mdi-email-outline</v-icon
-                    >
-                    <div class="pl-2 fs-14">
-                      <a href="mailto:info@xtel.vn">info@xtel.vn</a>
-                    </div>
+                </div>
+              </v-col>
+              <v-col cols="4" class="py-0 pr-0">
+                <div class="d-flex pt-2" style="align-items:center">
+                  <v-icon size="30" style="color:#8D8C8C"
+                    >mdi-phone-outline</v-icon
+                  >
+                  <div class="pl-2 fs-14">
+                    <a href="tel:0325505511"> (+84)35.889.999</a>
                   </div>
-                </v-col>
-                <v-col cols="8" class=" pb-0"
-                  ><iframe
-                    max-width="100%"
-                    width="250px"
-                    max-height="100%"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0785925946757!2d105.78277231429784!3d21.029541093128977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cf55cbf6b%3A0x6ed54091a6cad02c!2zMTUgTmfDtSA4MiBE4buLY2ggVuG7jW5nIEjhuq11LCBE4buLY2ggVuG7jW5nIEjhuq11LCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1640684046531!5m2!1svi!2s"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                  ></iframe
-                ></v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col cols="12" class="pt-10">
-          <div class="success--text text-center fs-14">
-            Copyright © 2021 XTEL All Rights Reserved.
-          </div>
-        </v-col>
-      </v-row>
+                </div>
+                <div class="d-flex pt-2" style="align-items:center">
+                  <v-icon size="30" style="color:#8D8C8C"
+                    >mdi-email-outline</v-icon
+                  >
+                  <div class="pl-2 fs-14">
+                    <a href="mailto:info@xtel.vn">info@xtel.vn</a>
+                  </div>
+                </div>
+              </v-col>
+              <v-col cols="12" class=" pb-0"
+                ><iframe
+                  max-width="100%"
+                  max-height="100%"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0785925946757!2d105.78277231429784!3d21.029541093128977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cf55cbf6b%3A0x6ed54091a6cad02c!2zMTUgTmfDtSA4MiBE4buLY2ggVuG7jW5nIEjhuq11LCBE4buLY2ggVuG7jW5nIEjhuq11LCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1640684046531!5m2!1svi!2s"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                ></iframe
+              ></v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </container>
     </v-footer>
   </v-app>
 </template>
@@ -343,6 +456,7 @@ export default {
     return {
       test: null,
       drawer: false,
+      showChoose: false,
       scrollTop: 0,
       showMenu: false,
       menuVPeople: false,
@@ -363,24 +477,32 @@ export default {
           page_icon: 'mdi-home'
         },
         {
-          page_name: 'V-people',
+          page_name: 'VPeople',
+          page_url: '',
+
+          children: [
+            {
+              page_name: 'VPeople'
+            }
+          ]
+        },
+        {
+          page_name: 'WhyChoose',
+          page_url: '',
+
+          children: []
+        },
+        {
+          page_name: 'RecruitmentProcess',
           page_url: ''
         },
         {
-          page_name: 'Why Choose Us',
-          page_url: ''
-        },
-        {
-          page_name: 'Recruitment process',
-          page_url: ''
-        },
-        {
-          page_name: 'Hot Jobs',
+          page_name: 'HotJobs',
           page_url: ''
         },
         {
           page_name: 'Contact',
-          page_url: '/shop'
+          page_url: ''
         }
       ]
     }
@@ -414,7 +536,7 @@ export default {
       this.menuVPeople = !this.menuVPeople
     },
     openMenuWhyChoose() {
-      this.show = !this.show
+      this.showChoose = !this.showChoose
     },
     onScrollContent(e) {
       this.scrollTop = e.target.scrollingElement.scrollTop
@@ -466,164 +588,322 @@ export default {
   }
 }
 </script>
-
+// desktop
 <style lang="scss">
-// @media (min-width: 1904px) {
-//   .container {
-//     max-width: 1185px !important;
-//   }
-// }
+.main-default {
+  .v-toolbar__content {
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+  .v-list-item__icon {
+    margin-right: 20px !important;
+  }
 
-.v-list-item__icon {
-  margin-right: 20px !important;
-}
+  .v-application--is-ltr
+    .v-list--dense.v-list--nav
+    .custom-group.v-list-group--no-action
+    > .v-list-group__items
+    > div
+    > .v-list-item {
+    padding-left: 50px !important;
+  }
 
-.v-application--is-ltr
-  .v-list--dense.v-list--nav
-  .custom-group.v-list-group--no-action
-  > .v-list-group__items
-  > div
-  > .v-list-item {
-  padding-left: 50px !important;
-}
+  .v-application--is-ltr
+    .v-list--dense
+    .v-list-group--sub-group
+    .v-list-group__header {
+    padding-left: 6px;
+  }
 
-.v-application--is-ltr
-  .v-list--dense
-  .v-list-group--sub-group
-  .v-list-group__header {
-  padding-left: 6px;
-}
-
-.v-list-item--active {
-  background-color: white;
-}
-.main-footer {
-  background-image: url(/banner/footer.png) !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  width: 100%;
-  .list-unstyled {
-    a {
-      text-decoration: none;
-      color: #7c7a7b !important;
-      &:hover {
-        color: white !important;
-        text-decoration: underline;
+  .v-list-item--active {
+    background-color: white;
+  }
+  .main-footer {
+    background-image: url(/banner/footer.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    width: 100%;
+    .list-unstyled {
+      a {
+        text-decoration: none;
+        color: #7c7a7b !important;
+        &:hover {
+          color: white !important;
+          text-decoration: underline;
+        }
+      }
+    }
+    .info-contact {
+      a {
+        text-decoration: none;
+        color: #7c7a7b !important;
+        &:hover {
+          color: white !important;
+          text-decoration: underline;
+        }
       }
     }
   }
-  .info-contact {
-    a {
-      text-decoration: none;
-      color: #7c7a7b !important;
-      &:hover {
-        color: white !important;
-        text-decoration: underline;
-      }
+
+  .background-image {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-image: url(/banner/banner.png) !important;
+    background-position: top !important;
+    height: 50px !important;
+    position: fixed;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background: black;
+    opacity: 0.4;
+  }
+
+  .custom-button {
+    color: white !important;
+
+    &::before {
+      opacity: 0 !important;
+    }
+
+    border-radius: 0px;
+    padding: 0 !important;
+    padding-top: 10px !important;
+
+    &:hover {
+      color: #0da319 !important;
+      border-bottom: 2px solid;
+    }
+
+    &.custom-button-active {
+      color: #0da319 !important;
+      border-bottom: 2px solid;
     }
   }
-}
-
-.background-image {
-  overflow-y: hidden;
-  overflow-x: hidden;
-  background-image: url(/banner/banner.png) !important;
-  background-position: top !important;
-  height: 50px !important;
-  position: fixed;
-  width: 100%;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-}
-
-.overlay {
-  position: absolute;
-  width: 100vw;
-  height: 100%;
-  background: black;
-  opacity: 0.4;
-}
-
-.custom-button {
-  color: white !important;
-
-  &::before {
-    opacity: 0 !important;
-  }
-
-  border-radius: 0px;
-  padding: 0 !important;
-  padding-top: 10px !important;
-
-  &:hover {
-    color: #0da319 !important;
-    border-bottom: 2px solid;
-  }
-
-  &.custom-button-active {
-    color: #0da319 !important;
-    border-bottom: 2px solid;
-  }
-}
-.v-application a {
-  color: white !important;
-}
-.style-footer-desktop {
-  .text-decoration {
-    text-decoration: none;
-  }
-  .display {
+  .v-application a {
     color: white !important;
   }
-  .style-foter-text-call-now {
-    font-size: 18px;
-    font-weight: bold;
-  }
+  .style-footer-desktop {
+    .text-decoration {
+      text-decoration: none;
+    }
+    .display {
+      color: white !important;
+    }
+    .style-foter-text-call-now {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-  .v-sheet {
-    border-radius: 0px !important;
-  }
-  .font-size-12 {
-    font-size: 12px;
-  }
-  .font-size-16 {
-    font-size: 16px;
-  }
+    .v-sheet {
+      border-radius: 0px !important;
+    }
+    .font-size-12 {
+      font-size: 12px;
+    }
+    .font-size-16 {
+      font-size: 16px;
+    }
 
-  .font-size-address {
-    font-size: 12px;
+    .font-size-address {
+      font-size: 12px;
+    }
+  }
+  .style-footer-mobile {
+    .text-decoration {
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .font-size-address {
+      font-size: 12px;
+    }
+    .border-radius-0 {
+      border-radius: 0px !important;
+    }
+    .style-foter-text-call-now {
+      font-weight: bold;
+      font-size: 14px !important;
+      text-align: center !important;
+    }
+
+    .display {
+      color: white;
+      font-size: 10px;
+    }
+    .can-giua {
+      text-align: center;
+    }
+    .font-size-12 {
+      font-size: 14px;
+    }
+    .style-footer-desktop {
+      z-index: 12 !important;
+    }
   }
 }
-.style-footer-mobile {
-  .text-decoration {
-    text-decoration: none;
-    font-size: 14px;
+</style>
+
+// mobile
+<style lang="scss" scoped>
+.main-default-mobile {
+  .v-list-item__icon {
+    margin-right: 20px !important;
   }
 
-  .font-size-address {
-    font-size: 12px;
-  }
-  .border-radius-0 {
-    border-radius: 0px !important;
-  }
-  .style-foter-text-call-now {
-    font-weight: bold;
-    font-size: 14px !important;
-    text-align: center !important;
+  .v-application--is-ltr
+    .v-list--dense.v-list--nav
+    .custom-group.v-list-group--no-action
+    > .v-list-group__items
+    > div
+    > .v-list-item {
+    padding-left: 50px !important;
   }
 
-  .display {
-    color: white;
-    font-size: 10px;
+  .v-application--is-ltr
+    .v-list--dense
+    .v-list-group--sub-group
+    .v-list-group__header {
+    padding-left: 6px;
   }
-  .can-giua {
-    text-align: center;
+
+  .v-list-item--active {
+    background-color: white;
   }
-  .font-size-12 {
-    font-size: 14px;
+  .main-footer {
+    background-image: url(/banner/footer.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    width: 100%;
+    .list-unstyled {
+      a {
+        text-decoration: none;
+        color: #7c7a7b !important;
+        &:hover {
+          color: white !important;
+          text-decoration: underline;
+        }
+      }
+    }
+    .info-contact {
+      a {
+        text-decoration: none;
+        color: #7c7a7b !important;
+        &:hover {
+          color: white !important;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .background-image {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-image: url(/banner/banner.png) !important;
+    background-position: top !important;
+    height: 50px !important;
+    position: fixed;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background: black;
+    opacity: 0.4;
+  }
+
+  .custom-button {
+    color: white !important;
+
+    &::before {
+      opacity: 0 !important;
+    }
+
+    border-radius: 0px;
+    padding: 0 !important;
+    padding-top: 10px !important;
+
+    &:hover {
+      color: #0da319 !important;
+      border-bottom: 2px solid;
+    }
+
+    &.custom-button-active {
+      color: #0da319 !important;
+      border-bottom: 2px solid;
+    }
+  }
+  .v-application a {
+    color: white !important;
   }
   .style-footer-desktop {
-    z-index: 12 !important;
+    .text-decoration {
+      text-decoration: none;
+    }
+    .display {
+      color: white !important;
+    }
+    .style-foter-text-call-now {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .v-sheet {
+      border-radius: 0px !important;
+    }
+    .font-size-12 {
+      font-size: 12px;
+    }
+    .font-size-16 {
+      font-size: 16px;
+    }
+
+    .font-size-address {
+      font-size: 12px;
+    }
+  }
+  .style-footer-mobile {
+    .text-decoration {
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .font-size-address {
+      font-size: 12px;
+    }
+    .border-radius-0 {
+      border-radius: 0px !important;
+    }
+    .style-foter-text-call-now {
+      font-weight: bold;
+      font-size: 14px !important;
+      text-align: center !important;
+    }
+
+    .display {
+      color: white;
+      font-size: 10px;
+    }
+    .can-giua {
+      text-align: center;
+    }
+    .font-size-12 {
+      font-size: 14px;
+    }
+    .style-footer-desktop {
+      z-index: 12 !important;
+    }
   }
 }
 </style>
