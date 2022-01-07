@@ -68,18 +68,16 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
-      height="50px"
       app
+      height="50px"
       light
       elevate-on-scroll
       z-index="15"
-      :color="
-        scrollTop > 0 ? 'rgba(0,0,0,' + scrollTop / 20 + ')' : 'transparent'
-      "
+      :color="scrollTop > 0 ? '#123f6d' : 'transparent'"
     >
       <v-toolbar-title class="align-center d-flex">
         <v-btn large icon to="">
-          <v-img src="/logo/logoXtel.png" width="20" />
+          <v-img src="/logo/logoXtel.png" width="40" />
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -441,6 +439,14 @@
         </v-row>
       </container>
     </v-footer>
+    <!-- <go-top
+      bg-color="#3d713f"
+      :bottom-gap="75"
+      :max-width="100"
+      :size="50"
+      :z-index="1000"
+      :has-outline="false"
+    ></go-top> -->
   </v-app>
 </template>
 
@@ -614,7 +620,6 @@ export default {
     .v-list-group__header {
     padding-left: 6px;
   }
-
   .v-list-item--active {
     background-color: white;
   }
