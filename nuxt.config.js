@@ -14,8 +14,8 @@ export default {
    ** Headers of the page
    */
   head: {
-    // titleTemplate: '%s - ' + process.env.npm_package_name,
-    titleTemplate: '',
+    titleTemplate: 'XTEL SOFTWARE & SOLUTIONS ',
+
     title: process.env.npm_package_name || '',
     meta: [
       {

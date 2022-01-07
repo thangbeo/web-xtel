@@ -50,8 +50,8 @@
               :key="`${item.id} + ${i}`"
               :src="item.src"
             >
-              <v-row>
-                <v-col cols="12" class="pt-2 pl-6 pr-4">
+              <v-row class="h-100 d-flex align-items-center pl-4">
+                <v-col cols="12" class="pt-2 ">
                   <div>
                     <div class="white--text font-weight-bold  pb-1  fs-20">
                       {{ item.title }}
@@ -400,7 +400,11 @@
               </v-row>
               <v-container v-else class="py-8">
                 <v-row>
-                  <v-col cols="6" v-for="item in itemsTotalData" :key="item.id">
+                  <v-col
+                    cols="12"
+                    v-for="item in itemsTotalData"
+                    :key="item.id"
+                  >
                     <div class="text-center">
                       <div style="text-align: -webkit-center;">
                         <v-img :src="item.icon" width="80"></v-img>

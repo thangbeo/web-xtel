@@ -53,7 +53,7 @@
             </v-col>
           </v-row>
           <v-container v-else class="pt-0">
-            <v-row>
+            <v-row class="fill-height" align="center" justify="center">
               <v-col
                 cols="12"
                 class="pt-0"
@@ -61,10 +61,9 @@
                 :key="`${item.id} + ${i}`"
               >
                 <v-img :src="item.image" width="100%">
-                  <div class="h-100">
-                    <v-card-text class="pb-0 pl-8">
-                      <v-row class="">
-                        <v-col cols="12" class="pt-12"></v-col>
+                  <div class="h-100 align-items-center d-flex">
+                    <v-card-text class="pb-0 ">
+                      <v-row>
                         <v-col md="12" class="pl-1 pt-3">
                           <div
                             class="fs-24 font-weight-bold white--text text-truncate"
@@ -78,7 +77,7 @@
                             {{ item.content }}
                           </div>
                         </v-col>
-                        <v-col cols="12" class="pl-0 pb-6">
+                        <v-col cols="12" class="pl-0 ">
                           <div>
                             <v-btn class="success" depressed rounded
                               >Xem thêm

@@ -83,7 +83,7 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           tile
           :class="'mb-2   custom-button mx-4 d-none d-sm-block'"
@@ -96,7 +96,7 @@
         >
       </v-hover>
 
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           @click="openMenuVPeople"
           tile
@@ -116,7 +116,7 @@
         </v-btn></span
       >
 
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           @click="openMenuWhyChoose"
           tile
@@ -136,7 +136,7 @@
         </v-btn></span
       >
 
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           tile
           :class="'mb-2 custom-button mx-4 d-none d-sm-block'"
@@ -148,7 +148,7 @@
         >
       </v-hover>
 
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           tile
           :class="'mb-2  custom-button mx-4 d-none d-sm-block'"
@@ -160,7 +160,7 @@
         >
       </v-hover>
 
-      <v-hover v-slot:default="{ hover }">
+      <v-hover v-slot:default="{}">
         <v-btn
           tile
           :class="'mb-2 custom-button mx-4 d-none d-sm-block'"
@@ -815,13 +815,13 @@ export default {
     background-size: cover !important;
   }
 
-  .overlay {
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    background: black;
-    opacity: 0.4;
-  }
+  // .overlay {
+  //   position: absolute;
+  //   width: 100vw;
+  //   height: 100%;
+  //   background: black;
+  //   opacity: 0.4;
+  // }
 
   .custom-button {
     color: white !important;
