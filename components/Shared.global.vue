@@ -54,30 +54,29 @@
         style="align-content: center;"
       >
         <v-col
-          cols="6"
+          md="6"
+          cols="12"
           v-for="(item, i) in items.totalData.listDataHot"
           :key="`${item.id} + ${i}`"
         >
           <v-img :src="item.image" width="100%">
-            <div class="h-100" style="display: flex; align-items: end; ">
+            <div
+              class="h-100"
+              style="display: flex; align-items: end;"
+              v-if="breakpoint === 'desktop'"
+            >
               <v-card-text>
                 <v-row>
-                  <v-col cols="9" class="pl-1 ">
+                  <v-col md="9" class="pl-1 ">
                     <div
                       class="fs-24 font-weight-bold white--text text-truncate"
                     >
                       {{ item.title }}
                     </div>
                   </v-col>
-                  <v-col cols="3" class="">
+                  <v-col md="3" class="">
                     <div>
-                      <v-btn
-                        small
-                        height="28"
-                        width="115"
-                        class="success"
-                        depressed
-                        rounded
+                      <v-btn small class="success" depressed rounded
                         >Xem thêm
                         <span>
                           <v-icon>mdi-chevron-right</v-icon>
@@ -91,26 +90,21 @@
                 </v-row>
               </v-card-text>
             </div>
-          </v-img>
-        </v-col>
-        <v-col
-          cols="4"
-          class="pt-0"
-          v-for="(item, i) in items.totalData.listData"
-          :key="`${item.id} + ${i}`"
-        >
-          <v-img :src="item.image" width="100%">
-            <div class="h-100" style="display: flex; align-items: end; ">
+            <div v-else class="h-100 align-items-center d-flex">
               <v-card-text>
-                <v-row class="">
-                  <v-col cols="8" class="pl-1 ">
+                <v-row>
+                  <v-col cols="12" class="pl-1 ">
                     <div
-                      class="fs-20 font-weight-bold white--text text-truncate"
+                      class="fs-24 font-weight-bold white--text text-truncate"
                     >
                       {{ item.title }}
                     </div>
                   </v-col>
-                  <v-col cols="4" class="px-0">
+
+                  <v-col cols="12" class="py-0 pl-1">
+                    <div class="fs-13 white--text">{{ item.content }}</div>
+                  </v-col>
+                  <v-col cols="12" class="">
                     <div>
                       <v-btn small class="success" depressed rounded
                         >Xem thêm
@@ -120,14 +114,48 @@
                       >
                     </div>
                   </v-col>
-                  <v-col cols="12" class="pt-0 pl-1 pr-0">
-                    <div class="fs-13 white--text">{{ item.content }}</div>
-                  </v-col>
                 </v-row>
               </v-card-text>
             </div>
           </v-img>
         </v-col>
+        <template v-if="breakpoint === 'desktop'">
+          <v-col
+            cols="4"
+            class="pt-0"
+            v-for="(item, i) in items.totalData.listData"
+            :key="`${item.id} + ${i}`"
+          >
+            <v-img :src="item.image" width="100%">
+              <div class="h-100" style="display: flex; align-items: end; ">
+                <v-card-text>
+                  <v-row class="">
+                    <v-col cols="8" class="pl-1 ">
+                      <div
+                        class="fs-20 font-weight-bold white--text text-truncate"
+                      >
+                        {{ item.title }}
+                      </div>
+                    </v-col>
+                    <v-col cols="4" class="px-0">
+                      <div>
+                        <v-btn small class="success" depressed rounded
+                          >Xem thêm
+                          <span>
+                            <v-icon>mdi-chevron-right</v-icon>
+                          </span></v-btn
+                        >
+                      </div>
+                    </v-col>
+                    <v-col cols="12" class="pt-0 pl-1 pr-0">
+                      <div class="fs-13 white--text">{{ item.content }}</div>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </div>
+            </v-img>
+          </v-col>
+        </template>
       </v-row>
       <v-row>
         <v-col cols="10" offset="1" class="pa-0">

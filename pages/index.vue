@@ -323,7 +323,12 @@
 
               <v-col cols="12" class="pt-0" v-else>
                 <v-row class="mx-0">
-                  <v-col cols="12" v-for="item in itemsServer" :key="item.id">
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    v-for="item in itemsServer"
+                    :key="item.id"
+                  >
                     <v-card
                       outlined
                       dense
@@ -402,6 +407,7 @@
                 <v-row>
                   <v-col
                     cols="12"
+                    sm="6"
                     v-for="item in itemsTotalData"
                     :key="item.id"
                   >
@@ -448,7 +454,11 @@
           </div>
           <div>
             <container>
-              <v-col cols="12" align="center">
+              <v-col
+                cols="12"
+                align="center"
+                :class="'col-sm-12' ? 'w-100' : ''"
+              >
                 <v-tabs light hide-slider v-model="tab">
                   <v-tab active-class="custom-button-active">
                     Offshore
@@ -552,96 +562,6 @@
                 </v-col>
               </v-row>
             </div>
-            <!-- <v-row class="mx-0">
-              <v-col cols="1" class="pb-0"></v-col>
-              <v-col cols="10" class="pb-0">
-                <v-row class="mx-0">
-                  <v-col align="center">
-                    <v-btn
-                      @click="clickevents(1)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 1
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >Tất cả</v-btn
-                    >
-                    <v-btn
-                      @click="clickevents(2)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 2
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >X-Customer</v-btn
-                    >
-                    <v-btn
-                      @click="clickevents(3)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 3
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >X-Journal</v-btn
-                    >
-                    <v-btn
-                      @click="clickevents(4)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 4
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >X-News</v-btn
-                    >
-                    <v-btn
-                      @click="clickevents(5)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 5
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >X-Life</v-btn
-                    >
-                    <v-btn
-                      @click="clickevents(6)"
-                      rounded
-                      depressed
-                      class="custom-button-achievements text-none fs-14 mr-2"
-                      :class="
-                        all === 6
-                          ? 'custom-button-active '
-                          : 'custom-button-achievements  mr-2'
-                      "
-                      >X-Tube</v-btn
-                    >
-                  </v-col>
-                </v-row>
-              </v-col>
-              <v-col cols="1" class="pb-0"></v-col>
-            </v-row> -->
-            <!-- <v-row class="mx-0">
-              <v-col cols="1" class="pt-0"></v-col>
-              <v-col cols="10" class="px-0 pt-0">
-                <Shared :items="itemsBanner" :data="all"></Shared>
-              </v-col>
-              <v-col cols="1" class="pt-0"></v-col>
-            </v-row> -->
-
             <container>
               <v-col cols="12" align="center">
                 <v-tabs light hide-slider v-model="tab1">
@@ -677,7 +597,7 @@
                         <v-col cols="1" class="pt-0"></v-col>
                       </v-row>
                       <v-col cols="12" class="pt-0 px-0" v-else>
-                        <openOffshore></openOffshore>
+                        <Shared :items="itemsBanner" :data="all"></Shared>
                       </v-col>
                     </container>
                   </v-tab-item>
@@ -717,6 +637,8 @@
   </div>
 </template>
 <script>
+
+
 import { mapState } from 'vuex'
 import moment from 'moment'
 import openOffshore from '~/components/tab/offShore.vue'
@@ -929,6 +851,7 @@ export default {
   },
   mounted() {
     this.offshore = 1
+
   },
   methods: {
     clickevents(value) {

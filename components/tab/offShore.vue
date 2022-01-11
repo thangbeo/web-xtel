@@ -53,9 +53,15 @@
             </v-col>
           </v-row>
           <v-container v-else class="pt-0">
-            <v-row class="fill-height" align="center" justify="center">
+            <v-row
+              class="fill-height"
+              align="center"
+              justify="center"
+              justify-sm="start"
+            >
               <v-col
                 cols="12"
+                sm="6"
                 class="pt-0"
                 v-for="(item, i) in items"
                 :key="`${item.id} + ${i}`"

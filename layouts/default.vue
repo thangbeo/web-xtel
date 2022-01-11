@@ -20,7 +20,7 @@
       right
       light
       style="padding-bottom: 54px"
-      class="denser-nav d-sm-none"
+      class="denser-nav d-md-none"
       height="100%"
     >
       <v-list nav dense flat expand class="disabled-active">
@@ -84,7 +84,7 @@
       <v-hover v-slot:default="{}">
         <v-btn
           tile
-          :class="'mb-2   custom-button mx-4 d-none d-sm-block'"
+          :class="'mb-2   custom-button mx-4 d-none d-md-block'"
           text
           active-class="custom-button-active"
           to="/"
@@ -93,51 +93,89 @@
           {{ $vuetify.lang.t('$vuetify.menu.Home') }}</v-btn
         >
       </v-hover>
+      <v-menu offset-y persistent transition="slide-y-transition">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            @click="openMenuVPeople"
+            tile
+            :class="'mb-3 custom-button ml-4 d-none d-md-block'"
+            text
+            v-bind="attrs"
+            v-on="on"
+            :ripple="false"
+            >{{ $vuetify.lang.t('$vuetify.menu.VPeople') }}
+
+            <span class="d-none d-sm-block">
+              <v-btn x-small @click="openMenuVPeople" icon fab>
+                <v-icon class="success--text">{{
+                  show ? 'mdi-menu-up' : 'mdi-menu-down'
+                }}</v-icon>
+              </v-btn></span
+            >
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <div style="width: 250px;">
+              <v-row>
+                <v-col cols="6" v-for="item in 10" :key="item" class="pa-2">
+                  <v-list-item-title
+                    ><a href="#" class="text-decoration-none">
+                      menu{{ item }}</a
+                    ></v-list-item-title
+                  >
+                </v-col>
+              </v-row>
+            </div>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <v-menu offset-y persistent transition="slide-y-transition">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            @click="openMenuWhyChoose"
+            tile
+            :class="'mb-3 custom-button ml-4 d-none d-md-block'"
+            text
+            v-bind="attrs"
+            v-on="on"
+            to=""
+            :ripple="false"
+            >{{ $vuetify.lang.t('$vuetify.menu.WhyChoose') }}
+
+            <span class="d-none d-md-block">
+              <v-btn x-small @click="openMenuWhyChoose" icon fab>
+                <v-icon class="success--text">{{
+                  showChoose ? 'mdi-menu-up' : 'mdi-menu-down'
+                }}</v-icon>
+              </v-btn></span
+            >
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item>
+            <div style="width: 250px;">
+              <v-row>
+                <v-col cols="6" v-for="item in 10" :key="item" class="pa-2">
+                  <v-list-item-title
+                    ><a href="#" class="text-decoration-none">
+                      menu{{ item }}</a
+                    ></v-list-item-title
+                  >
+                </v-col>
+              </v-row>
+            </div>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
       <v-hover v-slot:default="{}">
         <v-btn
-          @click="openMenuVPeople"
           tile
-          :class="'mb-2 custom-button ml-4 d-none d-sm-block'"
-          text
-          active-class="custom-button-active"
-          to=""
-          :ripple="false"
-          >{{ $vuetify.lang.t('$vuetify.menu.VPeople') }}
-        </v-btn>
-      </v-hover>
-      <span class="d-none d-sm-block">
-        <v-btn x-small @click="openMenuVPeople" icon fab>
-          <v-icon class="success--text">{{
-            show ? 'mdi-menu-up' : 'mdi-menu-down'
-          }}</v-icon>
-        </v-btn></span
-      >
-
-      <v-hover v-slot:default="{}">
-        <v-btn
-          @click="openMenuWhyChoose"
-          tile
-          :class="'mb-2  custom-button ml-4 d-none d-sm-block'"
-          text
-          active-class="custom-button-active"
-          to=""
-          :ripple="false"
-          >{{ $vuetify.lang.t('$vuetify.menu.WhyChoose') }}</v-btn
-        >
-      </v-hover>
-      <span class="d-none d-sm-block">
-        <v-btn x-small @click="openMenuWhyChoose" icon fab>
-          <v-icon class="success--text">{{
-            showChoose ? 'mdi-menu-up' : 'mdi-menu-down'
-          }}</v-icon>
-        </v-btn></span
-      >
-
-      <v-hover v-slot:default="{}">
-        <v-btn
-          tile
-          :class="'mb-2 custom-button mx-4 d-none d-sm-block'"
+          :class="'mb-2 custom-button mx-4 d-none d-md-block'"
           text
           active-class="custom-button-active"
           to=""
@@ -149,7 +187,7 @@
       <v-hover v-slot:default="{}">
         <v-btn
           tile
-          :class="'mb-2  custom-button mx-4 d-none d-sm-block'"
+          :class="'mb-2  custom-button mx-4 d-none d-md-block'"
           text
           active-class="custom-button-active"
           to=""
@@ -161,7 +199,7 @@
       <v-hover v-slot:default="{}">
         <v-btn
           tile
-          :class="'mb-2 custom-button mx-4 d-none d-sm-block'"
+          :class="'mb-2 custom-button mx-4 d-none d-md-block'"
           text
           active-class="custom-button-active"
           to=""
@@ -199,7 +237,7 @@
 
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
-        class="d-sm-none white--text"
+        class="d-md-none white--text"
       />
     </v-app-bar>
     <v-content v-scroll="onScrollContent">
@@ -598,8 +636,8 @@ export default {
 <style lang="scss">
 .main-default {
   .v-toolbar__content {
-    margin-left: 6rem;
-    margin-right: 6rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
   .v-list-item__icon {
     margin-right: 20px !important;
@@ -670,6 +708,23 @@ export default {
     opacity: 0.4;
   }
 
+  // .custom-button-click {
+  //   color: white !important;
+
+  //   &::before {
+  //     opacity: 0 !important;
+  //   }
+
+  //   border-radius: 0px;
+  //   padding: 0 !important;
+  //   padding-top: 10px !important;
+
+  //   &.custom-button-active {
+  //     color: #0da319 !important;
+  //     border-bottom: 2px solid;
+  //   }
+  // }
+
   .custom-button {
     color: white !important;
 
@@ -681,10 +736,10 @@ export default {
     padding: 0 !important;
     padding-top: 10px !important;
 
-    &:hover {
-      color: #0da319 !important;
-      border-bottom: 2px solid;
-    }
+    // &:hover {
+    //   color: #0da319 !important;
+    //   border-bottom: 2px solid;
+    // }
 
     &.custom-button-active {
       color: #0da319 !important;
